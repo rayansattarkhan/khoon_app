@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khoon_app/views/home_navigation_bar/home_navigation_bar.dart';
+import 'package:khoon_app/views/auth_views/login_screen.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if(mounted){
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomeNavigationBar()),
+          MaterialPageRoute(builder: (context) => LoginScreen()),
         );
       }
     });

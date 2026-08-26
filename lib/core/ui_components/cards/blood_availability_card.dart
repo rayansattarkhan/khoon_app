@@ -57,21 +57,31 @@ class BloodAvailabilityCard extends StatelessWidget {
             children: [
               Text(
                 titleText,
-                style: TextStyle(
-                  fontSize: 14,
+                // style: TextStyle(
+                //   fontSize: 14,
+                //   fontWeight: .bold,
+                //   color: DonorAvailability.donorAvailable == true
+                //       ? BloodDonationAvailabilityCardsColors.titleGreen
+                //       : BloodDonationAvailabilityCardsColors.titleYellow,
+                // ),
+                //
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontWeight: .bold,
-                  color: DonorAvailability.donorAvailable == true
-                      ? BloodDonationAvailabilityCardsColors.titleGreen
-                      : BloodDonationAvailabilityCardsColors.titleYellow,
-                ),
+                    color: DonorAvailability.donorAvailable == true
+                        ? BloodDonationAvailabilityCardsColors.titleGreen
+                        : BloodDonationAvailabilityCardsColors.titleYellow,
+                )
               ),
-              Text(
-                infoText,
-                style: TextStyle(
-                  fontSize: 13,
-                  color: DonorAvailability.donorAvailable == true
-                      ? BloodDonationAvailabilityCardsColors.infoGreen
-                      : BloodDonationAvailabilityCardsColors.infoYellow,
+              Align(
+                alignment: .centerStart ,
+                child: Text(
+                  infoText,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: DonorAvailability.donorAvailable == true
+                        ? BloodDonationAvailabilityCardsColors.infoGreen
+                        : BloodDonationAvailabilityCardsColors.infoYellow,
+                  ),
                 ),
               ),
             ],
