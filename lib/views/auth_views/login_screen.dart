@@ -28,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.semiWhite,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -54,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 8),
                   TextField(
                     controller: userEmail,
+                    keyboardType: .emailAddress,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: MyColors.white,
