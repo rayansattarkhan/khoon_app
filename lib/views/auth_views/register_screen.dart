@@ -19,6 +19,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController userPhoneNumber = TextEditingController();
   TextEditingController userPassword = TextEditingController();
   TextEditingController userConfirmPassword = TextEditingController();
+  TextEditingController userBloodGroup = TextEditingController();
+  TextEditingController userCity = TextEditingController();
 
   @override
   void dispose() {
@@ -27,6 +29,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     userPhoneNumber.dispose();
     userPassword.dispose();
     userConfirmPassword.dispose();
+    userBloodGroup.dispose();
+    userCity.dispose();
     super.dispose();
   }
 
@@ -39,6 +43,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
     {"label": "B-", "type": BloodGroup.bNegative()},
     {"label": "AB-", "type": BloodGroup.abNegative()},
     {"label": "O-", "type": BloodGroup.oNegative()},
+  ];
+
+  List<Map<String, String>> cities = [
+    {"cityName": "Thana"},
+    {"cityName": "Alladand"},
+    {"cityName": "Batkhela"},
+    {"cityName": "Malakand"},
+    {"cityName": "Palai"},
   ];
 
   @override
@@ -84,235 +96,247 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ],
                 ),
-                Form(
-                  child: Column(
-                    crossAxisAlignment: .start,
-                    children: [
-                      SizedBox(height: 14),
-                      Text("Full Name"),
-                      SizedBox(height: 8),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: MyColors.white,
-                          hintText: "E.g.: Ali Khan",
-                          hintStyle: Theme.of(context).textTheme.bodyMedium!
-                              .copyWith(color: MyTextColors.lightGrey),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: BorderSide(
-                              color: MyColors.lightGrey,
-                              width: 1.5,
-                            ),
+                Column(
+                  crossAxisAlignment: .start,
+                  children: [
+                    SizedBox(height: 14),
+                    Text("Full Name"),
+                    SizedBox(height: 8),
+                    TextField(
+                      controller: userFullName,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: MyColors.white,
+                        hintText: "E.g.: Ali Khan",
+                        hintStyle: Theme.of(context).textTheme.bodyMedium!
+                            .copyWith(color: MyTextColors.lightGrey),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(
+                            color: MyColors.lightGrey,
+                            width: 1.5,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: BorderSide(
-                              color: MyColors.lightGrey,
-                              width: 1.5,
-                            ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(
+                            color: MyColors.lightGrey,
+                            width: 1.5,
                           ),
                         ),
                       ),
-                      SizedBox(height: 14),
-                      Text("Email Address"),
-                      SizedBox(height: 8),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: MyColors.white,
-                          hintText: "donor@example.com",
-                          hintStyle: Theme.of(context).textTheme.bodyMedium!
-                              .copyWith(color: MyTextColors.lightGrey),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: BorderSide(
-                              color: MyColors.lightGrey,
-                              width: 1.5,
-                            ),
+                    ),
+                    SizedBox(height: 14),
+                    Text("Email Address"),
+                    SizedBox(height: 8),
+                    TextField(
+                      controller: userEmailAddress,
+                      keyboardType: .emailAddress,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: MyColors.white,
+                        hintText: "donor@example.com",
+                        hintStyle: Theme.of(context).textTheme.bodyMedium!
+                            .copyWith(color: MyTextColors.lightGrey),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(
+                            color: MyColors.lightGrey,
+                            width: 1.5,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: BorderSide(
-                              color: MyColors.lightGrey,
-                              width: 1.5,
-                            ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(
+                            color: MyColors.lightGrey,
+                            width: 1.5,
                           ),
                         ),
                       ),
-                      SizedBox(height: 14),
-                      Text("Phone Number (WhatsApp)"),
-                      SizedBox(height: 8),
-                      TextFormField(
-                        keyboardType: .phone,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: MyColors.white,
-                          hintText: "+92 300 1234567",
-                          hintStyle: Theme.of(context).textTheme.bodyMedium!
-                              .copyWith(color: MyTextColors.lightGrey),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: BorderSide(
-                              color: MyColors.lightGrey,
-                              width: 1.5,
-                            ),
+                    ),
+                    SizedBox(height: 14),
+                    Text("Phone Number (WhatsApp)"),
+                    SizedBox(height: 8),
+                    TextField(
+                      controller: userPhoneNumber,
+                      keyboardType: .phone,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: MyColors.white,
+                        hintText: "+92 300 1234567",
+                        hintStyle: Theme.of(context).textTheme.bodyMedium!
+                            .copyWith(color: MyTextColors.lightGrey),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(
+                            color: MyColors.lightGrey,
+                            width: 1.5,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: BorderSide(
-                              color: MyColors.lightGrey,
-                              width: 1.5,
-                            ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(
+                            color: MyColors.lightGrey,
+                            width: 1.5,
                           ),
                         ),
                       ),
-                      SizedBox(height: 14),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: (screenWidth / 2) - 30.5,
-                            child: Column(
-                              crossAxisAlignment: .start,
-                              children: [
-                                Text("Blood Group"),
-                                SizedBox(height: 8,),
-                                DropdownMenu(
-                                  inputDecorationTheme: InputDecorationTheme(
-                                    filled: true,
-                                    fillColor: MyColors.white,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide(
-                                        color: MyColors.lightGrey,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide(
-                                        color: MyColors.lightGrey,
-                                        width: 1.5,
-                                      ),
+                    ),
+                    SizedBox(height: 14),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: (screenWidth / 2) - 30.5,
+                          child: Column(
+                            crossAxisAlignment: .start,
+                            children: [
+                              Text("Blood Group"),
+                              SizedBox(height: 8),
+                              DropdownMenu(
+                                controller: userBloodGroup,
+                                inputDecorationTheme: InputDecorationTheme(
+                                  filled: true,
+                                  fillColor: MyColors.white,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: BorderSide(
+                                      color: MyColors.lightGrey,
+                                      width: 1.5,
                                     ),
                                   ),
-                                  menuStyle: MenuStyle(
-                                    backgroundColor: WidgetStatePropertyAll(
-                                      MyColors.white,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: BorderSide(
+                                      color: MyColors.lightGrey,
+                                      width: 1.5,
                                     ),
-                                  ),
-                                  width: (screenWidth / 2) - 30.5,
-                                  dropdownMenuEntries: List.generate(
-                                    bloodGroups.length,
-                                    (index) {
-                                      return DropdownMenuEntry(
-                                        value: bloodGroups[index]["type"],
-                                        label:
-                                            bloodGroups[index]["label"]
-                                                as String,
-                                      );
-                                    },
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: screenWidth / 20),
-                          SizedBox(
-                            width: (screenWidth / 2) - 30.5,
-                            child: Column(
-                              crossAxisAlignment: .start,
-                              children: [
-                                Text("City"),
-                                SizedBox(height: 8,),
-                                DropdownMenu(
-                                  menuStyle: MenuStyle(
-                                    backgroundColor: WidgetStatePropertyAll(
-                                      MyColors.white,
-                                    ),
+                                menuStyle: MenuStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                    MyColors.white,
                                   ),
-                                  inputDecorationTheme: InputDecorationTheme(
-                                    filled: true,
-                                    fillColor: MyColors.white,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide(
-                                        color: MyColors.lightGrey,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      borderSide: BorderSide(
-                                        color: MyColors.lightGrey,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                  ),
-                                  width: (screenWidth / 2) - 30.5,
-                                  dropdownMenuEntries: [
-                                    // TODO: city list as entries.
-                                  ],
                                 ),
-                              ],
-                            ),
+                                width: (screenWidth / 2) - 30.5,
+                                dropdownMenuEntries: List.generate(
+                                  bloodGroups.length,
+                                  (index) {
+                                    return DropdownMenuEntry(
+                                      value: bloodGroups[index]["type"],
+                                      label:
+                                          bloodGroups[index]["label"] as String,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      SizedBox(height: 14),
-                      Text("Enter Password"),
-                      SizedBox(height: 8),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: MyColors.white,
-                          hintText: "Password",
-                          hintStyle: Theme.of(context).textTheme.bodyMedium!
-                              .copyWith(color: MyTextColors.lightGrey),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: BorderSide(
-                              color: MyColors.lightGrey,
-                              width: 1.5,
-                            ),
+                        ),
+                        SizedBox(width: screenWidth / 20),
+                        SizedBox(
+                          width: (screenWidth / 2) - 30.5,
+                          child: Column(
+                            crossAxisAlignment: .start,
+                            children: [
+                              Text("City"),
+                              SizedBox(height: 8),
+                              DropdownMenu(
+                                controller: userCity,
+                                menuStyle: MenuStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                    MyColors.white,
+                                  ),
+                                ),
+                                inputDecorationTheme: InputDecorationTheme(
+                                  filled: true,
+                                  fillColor: MyColors.white,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: BorderSide(
+                                      color: MyColors.lightGrey,
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderSide: BorderSide(
+                                      color: MyColors.lightGrey,
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                                width: (screenWidth / 2) - 30.5,
+                                dropdownMenuEntries: List.generate(
+                                  cities.length,
+                                  (index) {
+                                    return DropdownMenuEntry(
+                                      value: cities[index]["cityName"],
+                                      label:
+                                          cities[index]["cityName"] as String,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: BorderSide(
-                              color: MyColors.lightGrey,
-                              width: 1.5,
-                            ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 14),
+                    Text("Enter Password"),
+                    SizedBox(height: 8),
+                    TextField(
+                      controller: userPassword,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: MyColors.white,
+                        hintText: "Password",
+                        hintStyle: Theme.of(context).textTheme.bodyMedium!
+                            .copyWith(color: MyTextColors.lightGrey),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(
+                            color: MyColors.lightGrey,
+                            width: 1.5,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(
+                            color: MyColors.lightGrey,
+                            width: 1.5,
                           ),
                         ),
                       ),
-                      SizedBox(height: 14),
-                      Text("Confirm Password"),
-                      SizedBox(height: 8),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: MyColors.white,
-                          hintText: "Password",
-                          hintStyle: Theme.of(context).textTheme.bodyMedium!
-                              .copyWith(color: MyTextColors.lightGrey),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: BorderSide(
-                              color: MyColors.lightGrey,
-                              width: 1.5,
-                            ),
+                    ),
+                    SizedBox(height: 14),
+                    Text("Confirm Password"),
+                    SizedBox(height: 8),
+                    TextField(
+                      controller: userConfirmPassword,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: MyColors.white,
+                        hintText: "Password",
+                        hintStyle: Theme.of(context).textTheme.bodyMedium!
+                            .copyWith(color: MyTextColors.lightGrey),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(
+                            color: MyColors.lightGrey,
+                            width: 1.5,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            borderSide: BorderSide(
-                              color: MyColors.lightGrey,
-                              width: 1.5,
-                            ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                          borderSide: BorderSide(
+                            color: MyColors.lightGrey,
+                            width: 1.5,
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 14),
                 Container(
@@ -346,7 +370,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                 ),
                 SizedBox(height: 14),
-                MyPrimaryButton("Register as Donor"),
+                MyPrimaryButton(
+                  "Register as Donor",
+                  onTap: () async {
+                    await Future.delayed(Duration(seconds: 1)).then((onValue) {
+                      if (mounted) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
+                      }
+                    });
+                  },
+                ),
                 SizedBox(height: screenHeight / 16),
                 Row(
                   mainAxisAlignment: .center,
@@ -362,9 +400,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         );
                       },
-                      child: Text("Sign In", style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: MyTextColors.redAccent
-                      ),),
+                      child: Text(
+                        "Sign In",
+                        style: Theme.of(context).textTheme.bodyLarge!
+                            .copyWith(color: MyTextColors.redAccent),
+                      ),
                     ),
                   ],
                 ),

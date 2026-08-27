@@ -60,9 +60,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       filled: true,
                       fillColor: MyColors.white,
                       hintText: "donor@example.com",
-                      hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: MyTextColors.lightGrey
-                      ),
+                      hintStyle: Theme.of(context).textTheme.bodyMedium!
+                          .copyWith(color: MyTextColors.lightGrey),
                       prefixIcon: Icon(Icons.email, color: MyColors.mediumGrey),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
@@ -91,9 +90,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       fillColor: MyColors.white,
                       // focusColor: MyColors.white,
                       hintText: "Password",
-                      hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: MyTextColors.lightGrey
-                      ),
+                      hintStyle: Theme.of(context).textTheme.bodyMedium!
+                          .copyWith(color: MyTextColors.lightGrey),
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide: BorderSide(
@@ -153,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: .center,
                     children: [
                       Text("Don't have an account?"),
-                      SizedBox(width: 5,),
+                      SizedBox(width: 5),
                       GestureDetector(
                         onTap: () {
                           Navigator.pushReplacement(
