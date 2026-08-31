@@ -25,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
+  //TODO: Implement ScaffoldMessengers
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,15 +136,41 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  // TODO: Sign in button
                   MyPrimaryButton(
                     "Sign In",
                     onTap: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => HomeNavigationBar(),
-                        ),
-                      );
+                      if (userEmail.text.isEmpty || userPassword.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            behavior: .floating,
+                            backgroundColor:
+                            BloodDonationAvailabilityCardsColors.borderYellow,
+                            content: Row(
+                              crossAxisAlignment: .center,
+                              children: [
+                                Icon(
+                                  Icons.warning_amber,
+                                  color: BloodDonationAvailabilityCardsColors
+                                      .titleYellow,
+                                ),
+                                SizedBox(width: 8),
+                                Text(
+                                  "Please fill all the fields!",
+                                  style: Theme.of(context).textTheme.bodyLarge!
+                                      .copyWith(color: MyColors.brightRed),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      } else {
+                        // TODO: Implement FireBase Auth
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => HomeNavigationBar(),
+                          ),
+                        );
+                      }
                     },
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height / 4),

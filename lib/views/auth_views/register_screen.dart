@@ -22,6 +22,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController userBloodGroup = TextEditingController();
   TextEditingController userCity = TextEditingController();
 
+  bool obscurePassword = true;
+  bool obscureConfirmPassword = true;
+
   @override
   void dispose() {
     userFullName.dispose();
@@ -57,6 +60,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+    // TODO: Implement ScaffoldMessengers
 
     return Scaffold(
       backgroundColor: MyColors.semiWhite,
@@ -138,6 +142,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         hintText: "donor@example.com",
                         hintStyle: Theme.of(context).textTheme.bodyMedium!
                             .copyWith(color: MyTextColors.lightGrey),
+                        prefixIcon: Icon(
+                          Icons.email,
+                          color: MyColors.mediumGrey,
+                        ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                           borderSide: BorderSide(
@@ -287,12 +295,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(height: 8),
                     TextField(
                       controller: userPassword,
+                      obscureText: obscurePassword,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: MyColors.white,
                         hintText: "Password",
                         hintStyle: Theme.of(context).textTheme.bodyMedium!
                             .copyWith(color: MyTextColors.lightGrey),
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          color: MyColors.mediumGrey,
+                        ),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            if (obscurePassword == true) {
+                              obscurePassword = false;
+                            } else {
+                              obscurePassword = true;
+                            }
+                            setState(() {});
+                          },
+                          child: Icon(
+                            obscurePassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: MyColors.mediumGrey,
+                          ),
+                        ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                           borderSide: BorderSide(
@@ -314,9 +343,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     SizedBox(height: 8),
                     TextField(
                       controller: userConfirmPassword,
+                      obscureText: obscureConfirmPassword,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: MyColors.white,
+                        prefixIcon: Icon(
+                          Icons.lock,
+                          color: MyColors.mediumGrey,
+                        ),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            if (obscureConfirmPassword == true) {
+                              obscureConfirmPassword = false;
+                            } else {
+                              obscureConfirmPassword = true;
+                            }
+                            setState(() {});
+                          },
+                          child: Icon(
+                            obscureConfirmPassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: MyColors.mediumGrey,
+                          ),
+                        ),
                         hintText: "Password",
                         hintStyle: Theme.of(context).textTheme.bodyMedium!
                             .copyWith(color: MyTextColors.lightGrey),
@@ -373,16 +423,78 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 MyPrimaryButton(
                   "Register as Donor",
                   onTap: () async {
-                    await Future.delayed(Duration(seconds: 1)).then((onValue) {
-                      if (mounted) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
+                    List<TextEditingController> controllers = [
+                      userFullName,
+                      userEmailAddress,
+                      userPhoneNumber,
+                      userBloodGroup,
+                      userCity,
+                      userPassword,
+                      userConfirmPassword,
+                    ];
+                    if (controllers.any(
+                      (controller) => controller.text.isEmpty,
+                    )) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          behavior: .floating,
+                          backgroundColor:
+                          BloodDonationAvailabilityCardsColors.borderYellow,
+                          content: Row(
+                            crossAxisAlignment: .center,
+                            children: [
+                              Icon(
+                                Icons.warning_amber,
+                                color: BloodDonationAvailabilityCardsColors
+                                    .titleYellow,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                "Please fill all the fields!",
+                                style: Theme.of(context).textTheme.bodyLarge!
+                                    .copyWith(color: MyColors.brightRed),
+                              ),
+                            ],
                           ),
-                        );
-                      }
-                    });
+                        ),
+                      );
+                    } else if (userPassword.text != userConfirmPassword.text) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          behavior: .floating,
+                          backgroundColor:
+                              BloodDonationAvailabilityCardsColors.borderYellow,
+                          content: Row(
+                            crossAxisAlignment: .center,
+                            children: [
+                              Icon(
+                                Icons.warning_amber,
+                                color: BloodDonationAvailabilityCardsColors
+                                    .titleYellow,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                "Passwords don't match!",
+                                style: Theme.of(context).textTheme.bodyLarge!
+                                    .copyWith(color: MyColors.brightRed),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    } else {
+                      await Future.delayed(Duration(seconds: 1))
+                          .then((onValue) {
+                            if (mounted) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginScreen(),
+                                ),
+                              );
+                            }
+                          });
+                    }
                   },
                 ),
                 SizedBox(height: screenHeight / 16),
