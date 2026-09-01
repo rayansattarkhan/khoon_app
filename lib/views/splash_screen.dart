@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Center(
           child: Image.asset(
             "assets/images/splash_screen_logo/khoon_app_splash_screen_logo.png",
-            scale: 4,
+            scale: 16,
           ),
         ),
       ),

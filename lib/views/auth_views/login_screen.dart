@@ -40,8 +40,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 70),
                   Image.asset(
                     "assets/images/splash_screen_logo/khoon_app_splash_screen_logo.png",
-                    scale: 8,
+                    scale: 22,
                   ),
+                  SizedBox(height: 20,),
                   Text(
                     "Welcome",
                     style: Theme.of(context).textTheme.headlineLarge,
@@ -173,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                     },
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height / 4),
+                  SizedBox(height: MediaQuery.of(context).size.height / 5),
                   Row(
                     mainAxisAlignment: .center,
                     children: [
