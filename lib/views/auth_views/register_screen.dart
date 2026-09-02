@@ -99,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: screenHeight / 70,),
+                SizedBox(height: screenHeight / 70),
                 Column(
                   crossAxisAlignment: .start,
                   children: [
@@ -439,13 +439,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Positioned(
                       left: 10,
                       top: 30,
-                      child: Text("You can turn this off anytime in settings"),
+                      child: Text("You can turn this off anytime in settings", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: MyTextColors.mediumGrey
+                      ),),
                     ),
                     Positioned(
                       right: 10,
                       top: 6,
                       child: Switch(
                         activeTrackColor: MyColors.darkGreen,
+                        inactiveTrackColor: MyColors.lightGrey,
+                        inactiveThumbColor: MyColors.mediumGrey,
+                        trackOutlineColor: .resolveWith(((states) {
+                          return states.contains(WidgetState.selected)
+                              ? MyColors.darkGreen
+                              : MyColors.mediumGrey;
+                        })),
                         value: DonorAvailability.donorAvailable,
                         onChanged: (value) {
                           setState(() {

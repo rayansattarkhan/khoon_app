@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/buttons/outlined_button.dart';
+import 'package:khoon_app/view_models/donor_availability/donor_availability.dart';
 import 'package:khoon_app/views/auth_views/sign_in_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -39,15 +40,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           SizedBox(height: screenHeight / 40),
           Container(
-            padding: .all(20),
-            height: screenHeight / 6.5,
+            padding: .all(10),
+            height: screenHeight / 6,
             decoration: BoxDecoration(
               color: MyColors.white,
               borderRadius: .circular(15),
               border: .all(color: MyColors.lightGrey),
             ),
             child: Row(
-              mainAxisAlignment: .spaceEvenly,
               children: [
                 CircleAvatar(
                   backgroundColor: MyColors.lightPink,
@@ -58,9 +58,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         .copyWith(color: MyTextColors.redAccent),
                   ),
                 ),
-                SizedBox(width: screenWidth / 30),
+                SizedBox(width: screenWidth / 20),
                 Column(
-                  // mainAxisAlignment: .space,
                   crossAxisAlignment: .start,
                   children: [
                     SizedBox(height: 10),
@@ -83,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
-                SizedBox(width: screenWidth / 30),
+                Spacer(),
                 Container(
                   width: 58,
                   height: 58,
@@ -106,7 +105,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Container(
             padding: .all(10),
             width: .infinity,
-            height: screenHeight / 8,
+            height: screenHeight / 7,
             decoration: BoxDecoration(
               color: MyColors.white,
               borderRadius: .circular(15),
@@ -154,8 +153,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Spacer(),
                     Switch(
                       activeTrackColor: MyColors.darkGreen,
-                      value: true,
-                      onChanged: (onChanged) {},
+                      inactiveTrackColor: MyColors.lightGrey,
+                      inactiveThumbColor: MyColors.mediumGrey,
+                      trackOutlineColor: .resolveWith(((states) {
+                        return states.contains(WidgetState.selected)
+                            ? MyColors.darkGreen
+                            : MyColors.mediumGrey;
+                      })),
+                      value: DonorAvailability.donorAvailable,
+                      onChanged: (value) {
+                        setState(() {
+                          DonorAvailability.donorAvailable = value;
+                        });
+                      },
                     ),
                   ],
                 ),
