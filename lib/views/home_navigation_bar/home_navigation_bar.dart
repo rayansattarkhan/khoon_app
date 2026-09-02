@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/views/home_navigation_bar/screens/chats_screen.dart';
-import 'package:khoon_app/views/home_navigation_bar/screens/home_screen.dart';
+import 'package:khoon_app/views/home_navigation_bar/screens/dashboard_screen.dart';
 import 'package:khoon_app/views/home_navigation_bar/screens/profile_screen.dart';
 import 'package:khoon_app/views/home_navigation_bar/screens/requests_screen.dart';
 
@@ -17,7 +17,7 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
   int activeScreenIndex = 0;
 
   List<Map<String, dynamic>> myScreens = [
-    {"screen": HomeScreen(), "title": "Home", "icon": Icons.dashboard_rounded},
+    {"screen": DashboardScreen(), "title": "Home", "icon": Icons.dashboard_rounded},
     {
       "screen": RequestsScreen(),
       "title": "Requests",

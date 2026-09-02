@@ -39,9 +39,9 @@ class BloodAvailabilityCard extends StatelessWidget {
         borderRadius: .circular(borderRadius!),
       ),
       child: Row(
-        mainAxisAlignment: .spaceEvenly,
         children: [
           Container(
+            margin: .all(15),
             width: 26,
             height: 26,
             decoration: BoxDecoration(

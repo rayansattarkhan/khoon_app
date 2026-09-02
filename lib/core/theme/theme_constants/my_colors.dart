@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 class MyColors {
   static const Color brightRed = Color(0xFFD32F2F);
+  static const Color lightRed = Color(0xFFDC5959);
   static const Color lightPink = Color(0xFFFFEBEE);
   static const Color darkGreen = Color(0xFF2E7D32);
   static const Color lightGrey = Color(0xFFE0E0E0);
   static const Color darkGrey = Color(0xFF1A1A1A);
   static const Color semiDarkGrey = Color(0xFF666666);
   static const Color mediumGrey = Color(0xFF9E9E9E);
-  static const Color semiWhite = Color(0xFFF8F9FA);
   static const Color white = Color(0xFFFFFFFF);
+  static const Color semiWhite = Color(0xFFF8F9FA);
   static const Color babyBlue = Color(0xFF2F94D3);
 }
 

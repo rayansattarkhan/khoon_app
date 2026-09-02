@@ -195,6 +195,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             height: screenHeight / 3.5,
             padding: .all(10),
             decoration: BoxDecoration(
+              color: MyColors.white,
               border: .all(color: MyColors.lightGrey),
               borderRadius: .circular(15),
             ),
