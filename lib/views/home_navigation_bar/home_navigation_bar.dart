@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:khoon_app/core/theme/my_themes.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
+import 'package:khoon_app/views/home_navigation_bar/screens/chats_screen.dart';
 import 'package:khoon_app/views/home_navigation_bar/screens/home_screen.dart';
 import 'package:khoon_app/views/home_navigation_bar/screens/profile_screen.dart';
 import 'package:khoon_app/views/home_navigation_bar/screens/requests_screen.dart';
@@ -23,13 +24,13 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
       "title": "Requests",
       "icon": Icons.local_hospital,
     },
+    {"screen": ChatsScreen(), "title": "Chats", "icon": Icons.chat},
     {"screen": ProfileScreen(), "title": "Profile", "icon": Icons.person},
   ];
 
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    // var screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SafeArea(

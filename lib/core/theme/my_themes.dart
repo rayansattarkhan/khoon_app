@@ -5,7 +5,7 @@ import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 class MyThemes {
   static ThemeData myLightTheme() {
     return ThemeData(
-      fontFamily: "assets/fonts/Arial",
+      fontFamily: "Arial",
       scaffoldBackgroundColor: MyColors.semiWhite,
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(

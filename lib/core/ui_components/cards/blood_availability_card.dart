@@ -57,6 +57,7 @@ class BloodAvailabilityCard extends StatelessWidget {
             children: [
               Text(
                 titleText,
+                // For regular text styling with the global theme.
                 // style: TextStyle(
                 //   fontSize: 14,
                 //   fontWeight: .bold,
