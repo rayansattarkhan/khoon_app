@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/my_themes.dart';
-import 'package:khoon_app/views/home_navigation_bar/home_navigation_bar.dart';
-// import 'package:khoon_app/views/splash_screen.dart';
+import 'package:khoon_app/views/splash_screen.dart';
 
 void main() {
   runApp(const KhoonApp());
@@ -15,9 +14,7 @@ class KhoonApp extends StatelessWidget {
     return MaterialApp(
       title: 'Khoon App',
       theme: MyThemes.myLightTheme(),
-      home: MaterialApp(
-        home: HomeNavigationBar(),
-      ),
+      home: SplashScreen(),
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:khoon_app/core/theme/my_themes.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/views/home_navigation_bar/screens/chats_screen.dart';
@@ -18,13 +17,13 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
   int activeScreenIndex = 0;
 
   List<Map<String, dynamic>> myScreens = [
-    {"screen": HomeScreen(), "title": "Home", "icon": Icons.dashboard},
+    {"screen": HomeScreen(), "title": "Home", "icon": Icons.dashboard_rounded},
     {
       "screen": RequestsScreen(),
       "title": "Requests",
       "icon": Icons.local_hospital,
     },
-    {"screen": ChatsScreen(), "title": "Chats", "icon": Icons.chat},
+    {"screen": ChatsScreen(), "title": "Chats", "icon": Icons.chat_rounded},
     {"screen": ProfileScreen(), "title": "Profile", "icon": Icons.person},
   ];
 

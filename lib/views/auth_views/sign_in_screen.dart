@@ -5,14 +5,14 @@ import 'package:khoon_app/core/ui_components/buttons/primary_button.dart';
 import 'package:khoon_app/views/auth_views/register_screen.dart';
 import 'package:khoon_app/views/home_navigation_bar/home_navigation_bar.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   bool obscurePassword = true;
 
   TextEditingController userEmail = TextEditingController();
@@ -28,21 +28,25 @@ class _LoginScreenState extends State<LoginScreen> {
   //TODO: Implement ScaffoldMessengers
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      backgroundColor: MyColors.semiWhite,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(10),
             child: Center(
               child: Column(
                 children: [
                   SizedBox(height: 70),
-                  Image.asset(
-                    "assets/images/splash_screen_logo/khoon_app_splash_screen_logo.png",
-                    scale: 22,
+                  Padding(
+                    padding: screenWidth < 800 ? .only(left: screenWidth / 25) : .all(0),
+                    child: Image.asset(
+                      "assets/images/sign_in_screen_image/khoon_app_logo_new_2x.png",
+                      scale: 10,
+                    ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 20),
                   Text(
                     "Welcome",
                     style: Theme.of(context).textTheme.headlineLarge,
@@ -53,7 +57,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         .copyWith(color: MyColors.semiDarkGrey),
                   ),
                   SizedBox(height: 50),
-                  Align(alignment: .centerStart, child: Text("Email Address")),
+                  Align(
+                    alignment: .centerStart,
+                    child: Text(
+                      "Email Address",
+                      style: Theme.of(context).textTheme.bodyMedium!
+                          .copyWith(color: MyTextColors.darkGrey),
+                    ),
+                  ),
                   SizedBox(height: 8),
                   TextField(
                     controller: userEmail,
@@ -82,7 +93,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(height: 14),
-                  Align(alignment: .centerStart, child: Text("Password")),
+                  Align(
+                    alignment: .centerStart,
+                    child: Text(
+                      "Password",
+                      style: Theme.of(context).textTheme.bodyMedium!
+                          .copyWith(color: MyTextColors.darkGrey),
+                    ),
+                  ),
                   SizedBox(height: 8),
                   TextField(
                     controller: userPassword,
@@ -145,7 +163,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           SnackBar(
                             behavior: .floating,
                             backgroundColor:
-                            BloodDonationAvailabilityCardsColors.borderYellow,
+                                BloodDonationAvailabilityCardsColors
+                                    .borderYellow,
                             content: Row(
                               crossAxisAlignment: .center,
                               children: [
@@ -178,7 +197,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     mainAxisAlignment: .center,
                     children: [
-                      Text("Don't have an account?"),
+                      Text(
+                        "Don't have an account?",
+                        style: Theme.of(context).textTheme.bodyMedium!
+                            .copyWith(color: MyTextColors.mediumGrey),
+                      ),
                       SizedBox(width: 5),
                       GestureDetector(
                         onTap: () {

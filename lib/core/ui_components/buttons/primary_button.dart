@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
+import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 
 class MyPrimaryButton extends StatefulWidget {
   final String text;
@@ -17,7 +18,7 @@ class MyPrimaryButton extends StatefulWidget {
     this.width = double.infinity,
     this.height = 48.0,
     this.fontWeight = .bold,
-    this.fontSize = 14.0,
+    this.fontSize = 16.0,
     this.fontFamily,
     this.borderRadius = 8.0,
     this.onTap,
@@ -46,7 +47,7 @@ class _MyPrimaryButton extends State<MyPrimaryButton> {
           child: Text(
             widget.text,
             style: TextStyle(
-              color: MyColors.white,
+              color: MyTextColors.whiteAccent,
               fontWeight: .bold,
               fontSize: widget.fontSize,
               fontFamily: widget.fontFamily,

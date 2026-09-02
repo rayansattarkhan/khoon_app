@@ -10,8 +10,6 @@ class RequestsScreen extends StatefulWidget {
 class _RequestsScreenState extends State<RequestsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text("Requests Screen"),
-    );
+    return Center(child: Text("Requests Screen"));
   }
 }

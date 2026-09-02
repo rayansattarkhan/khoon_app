@@ -4,7 +4,7 @@ import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/buttons/primary_button.dart';
 import 'package:khoon_app/view_models/constants/blood_groups.dart';
 import 'package:khoon_app/view_models/donor_availability/donor_availability.dart';
-import 'package:khoon_app/views/auth_views/login_screen.dart';
+import 'package:khoon_app/views/auth_views/sign_in_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -63,14 +63,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     // TODO: Implement ScaffoldMessengers
 
     return Scaffold(
-      backgroundColor: MyColors.semiWhite,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                SizedBox(height: screenHeight / 100),
+                SizedBox(height: screenHeight / 80),
                 Row(
                   children: [
                     GestureDetector(
@@ -78,7 +77,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
+                            builder: (context) => SignInScreen(),
                           ),
                         );
                       },
@@ -93,18 +92,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ],
                       ),
                     ),
-                    SizedBox(width: screenWidth / 12),
+                    SizedBox(width: screenWidth / 7),
                     Text(
                       "Create Account",
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ],
                 ),
+                SizedBox(height: screenHeight / 70,),
                 Column(
                   crossAxisAlignment: .start,
                   children: [
                     SizedBox(height: 14),
-                    Text("Full Name"),
+                    Text(
+                      "Full Name",
+                      style: Theme.of(context).textTheme.bodyMedium!
+                          .copyWith(color: MyTextColors.darkGrey),
+                    ),
                     SizedBox(height: 8),
                     TextField(
                       controller: userFullName,
@@ -131,7 +135,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     SizedBox(height: 14),
-                    Text("Email Address"),
+                    Text(
+                      "Email Address",
+                      style: Theme.of(context).textTheme.bodyMedium!
+                          .copyWith(color: MyTextColors.darkGrey),
+                    ),
                     SizedBox(height: 8),
                     TextField(
                       controller: userEmailAddress,
@@ -163,7 +171,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     SizedBox(height: 14),
-                    Text("Phone Number (WhatsApp)"),
+                    Text(
+                      "Phone Number (WhatsApp)",
+                      style: Theme.of(context).textTheme.bodyMedium!
+                          .copyWith(color: MyTextColors.darkGrey),
+                    ),
                     SizedBox(height: 8),
                     TextField(
                       controller: userPhoneNumber,
@@ -194,11 +206,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Row(
                       children: [
                         SizedBox(
-                          width: (screenWidth / 2) - 30.5,
+                          width: (screenWidth / 2 - 15),
                           child: Column(
                             crossAxisAlignment: .start,
                             children: [
-                              Text("Blood Group"),
+                              Text(
+                                "Blood Group",
+                                style: Theme.of(context).textTheme.bodyMedium!
+                                    .copyWith(color: MyTextColors.darkGrey),
+                              ),
                               SizedBox(height: 8),
                               DropdownMenu(
                                 controller: userBloodGroup,
@@ -225,7 +241,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     MyColors.white,
                                   ),
                                 ),
-                                width: (screenWidth / 2) - 30.5,
+                                width: (screenWidth / 2 - 15),
                                 dropdownMenuEntries: List.generate(
                                   bloodGroups.length,
                                   (index) {
@@ -240,13 +256,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(width: screenWidth / 20),
+                        SizedBox(width: 10),
                         SizedBox(
-                          width: (screenWidth / 2) - 30.5,
+                          width: (screenWidth / 2 - 15),
                           child: Column(
                             crossAxisAlignment: .start,
                             children: [
-                              Text("City"),
+                              Text(
+                                "City",
+                                style: Theme.of(context).textTheme.bodyMedium!
+                                    .copyWith(color: MyTextColors.darkGrey),
+                              ),
                               SizedBox(height: 8),
                               DropdownMenu(
                                 controller: userCity,
@@ -273,7 +293,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                   ),
                                 ),
-                                width: (screenWidth / 2) - 30.5,
+                                width: (screenWidth / 2 - 15),
                                 dropdownMenuEntries: List.generate(
                                   cities.length,
                                   (index) {
@@ -291,7 +311,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ],
                     ),
                     SizedBox(height: 14),
-                    Text("Enter Password"),
+                    Text(
+                      "Enter Password",
+                      style: Theme.of(context).textTheme.bodyMedium!
+                          .copyWith(color: MyTextColors.darkGrey),
+                    ),
                     SizedBox(height: 8),
                     TextField(
                       controller: userPassword,
@@ -339,7 +363,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     SizedBox(height: 14),
-                    Text("Confirm Password"),
+                    Text(
+                      "Confirm Password",
+                      style: Theme.of(context).textTheme.bodyMedium!
+                          .copyWith(color: MyTextColors.darkGrey),
+                    ),
                     SizedBox(height: 8),
                     TextField(
                       controller: userConfirmPassword,
@@ -389,25 +417,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ],
                 ),
                 SizedBox(height: 14),
-                Container(
-                  padding: .all(10),
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    color: MyColors.lightPink,
-                    borderRadius: .circular(8),
-                  ),
-                  child: Row(
-                    children: [
-                      Column(
-                        mainAxisAlignment: .center,
-                        crossAxisAlignment: .start,
-                        children: [
-                          Text("Available to donate blood?"),
-                          Text("You can turn this off anytime in settings"),
-                        ],
+                Stack(
+                  children: [
+                    Container(
+                      padding: .all(10),
+                      height: 60.0,
+                      decoration: BoxDecoration(
+                        color: MyColors.lightPink,
+                        borderRadius: .circular(8),
                       ),
-                      SizedBox(width: (screenWidth / 3.8) - 60),
-                      Switch(
+                    ),
+                    Positioned(
+                      left: 10,
+                      top: 10,
+                      child: Text(
+                        "Available to donate blood?",
+                        style: Theme.of(context).textTheme.bodyMedium!
+                            .copyWith(color: MyTextColors.darkGrey),
+                      ),
+                    ),
+                    Positioned(
+                      left: 10,
+                      top: 30,
+                      child: Text("You can turn this off anytime in settings"),
+                    ),
+                    Positioned(
+                      right: 10,
+                      top: 6,
+                      child: Switch(
                         activeTrackColor: MyColors.darkGreen,
                         value: DonorAvailability.donorAvailable,
                         onChanged: (value) {
@@ -416,8 +453,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           });
                         },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 14),
                 MyPrimaryButton(
@@ -439,7 +476,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SnackBar(
                           behavior: .floating,
                           backgroundColor:
-                          BloodDonationAvailabilityCardsColors.borderYellow,
+                              BloodDonationAvailabilityCardsColors.borderYellow,
                           content: Row(
                             crossAxisAlignment: .center,
                             children: [
@@ -489,7 +526,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => LoginScreen(),
+                                  builder: (context) => SignInScreen(),
                                 ),
                               );
                             }
@@ -501,14 +538,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Row(
                   mainAxisAlignment: .center,
                   children: [
-                    Text("Already registered?"),
+                    Text(
+                      "Already registered?",
+                      style: Theme.of(context).textTheme.bodyMedium!
+                          .copyWith(color: MyTextColors.mediumGrey),
+                    ),
                     SizedBox(width: 5),
                     GestureDetector(
                       onTap: () {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginScreen(),
+                            builder: (context) => SignInScreen(),
                           ),
                         );
                       },

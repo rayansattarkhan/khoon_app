@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
-import 'package:khoon_app/core/ui_components/buttons/action_button.dart';
-import 'package:khoon_app/views/auth_views/login_screen.dart';
+import 'package:khoon_app/core/ui_components/buttons/outlined_button.dart';
+import 'package:khoon_app/views/auth_views/sign_in_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -27,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(width: screenWidth / 2.8),
               Text(
                 "My Profile",
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
               SizedBox(width: screenWidth / 5),
               Text(
@@ -105,6 +105,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           SizedBox(height: screenHeight / 40),
           Container(
             padding: .all(10),
+            width: .infinity,
             height: screenHeight / 8,
             decoration: BoxDecoration(
               color: MyColors.white,
@@ -119,7 +120,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Column(
                       crossAxisAlignment: .start,
                       children: [
-                        Text("Available to Donate"),
+                        Text(
+                          "Available to Donate",
+                          style: Theme.of(context).textTheme.bodyMedium!
+                              .copyWith(
+                                color: MyTextColors.blackAccent,
+                                fontSize: 14,
+                              ),
+                        ),
                         Row(
                           children: [
                             Container(
@@ -134,7 +142,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Text(
                               "Active in Search Results",
                               style: Theme.of(context).textTheme.bodyMedium!
-                                  .copyWith(color: MyTextColors.lightGreen),
+                                  .copyWith(
+                                    color: MyTextColors.lightGreen,
+                                    fontSize: 14,
+                                  ),
                             ),
                           ],
                         ),
@@ -148,15 +159,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
-                Divider(),
+                Divider(color: MyColors.lightGrey),
                 Row(
                   children: [
                     Text("Last Donated: "),
                     SizedBox(width: screenWidth / 200),
                     Text(
                       "10 June, 2026",
-                      style: Theme.of(context).textTheme.bodyMedium!
-                          .copyWith(fontWeight: .bold),
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontWeight: .bold,
+                        color: MyTextColors.blackAccent,
+                        fontSize: 14,
+                      ),
                     ),
                     SizedBox(width: screenWidth / 200),
                     Text("(60+ days ago)"),
@@ -166,12 +180,98 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           SizedBox(height: screenHeight / 40),
-          MyActionButton(
+          Container(
+            width: .infinity,
+            height: screenHeight / 3.5,
+            padding: .all(10),
+            decoration: BoxDecoration(
+              border: .all(color: MyColors.lightGrey),
+              borderRadius: .circular(15),
+            ),
+            child: Column(
+              mainAxisAlignment: .spaceEvenly,
+              children: [
+                GestureDetector(
+                  onTap: () {},
+                  child: Row(
+                    children: [
+                      Text(
+                        "Change City/Region",
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: MyTextColors.darkGrey,
+                          fontWeight: .normal,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(Icons.chevron_right, color: MyColors.semiDarkGrey),
+                    ],
+                  ),
+                ),
+                Divider(color: MyColors.lightGrey),
+                GestureDetector(
+                  onTap: () {},
+                  child: Row(
+                    children: [
+                      Text(
+                        "Update last donation date",
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: MyTextColors.darkGrey,
+                          fontWeight: .normal,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(Icons.chevron_right, color: MyColors.semiDarkGrey),
+                    ],
+                  ),
+                ),
+                Divider(color: MyColors.lightGrey),
+                GestureDetector(
+                  onTap: () {},
+                  child: Row(
+                    children: [
+                      Text(
+                        "My active blood requests",
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: MyTextColors.darkGrey,
+                          fontWeight: .normal,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(Icons.chevron_right, color: MyColors.semiDarkGrey),
+                    ],
+                  ),
+                ),
+                Divider(color: MyColors.lightGrey),
+                GestureDetector(
+                  onTap: () {},
+                  child: Row(
+                    children: [
+                      Text(
+                        "About Khoon App",
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: MyTextColors.darkGrey,
+                          fontWeight: .normal,
+                          fontSize: 15,
+                        ),
+                      ),
+                      Spacer(),
+                      Icon(Icons.chevron_right, color: MyColors.semiDarkGrey),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: screenHeight / 40),
+          MyOutlinedButton(
             "Log Out",
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
+                MaterialPageRoute(builder: (context) => SignInScreen()),
               );
             },
           ),

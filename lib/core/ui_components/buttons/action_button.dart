@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
+import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 
 class MyActionButton extends StatefulWidget {
   final String text;
@@ -18,9 +19,9 @@ class MyActionButton extends StatefulWidget {
     this.height = 48,
     this.borderRadius = 8,
     this.fontWeight = .bold,
-    this.fontSize = 14,
+    this.fontSize = 16.0,
     this.fontFamily,
-    this.onTap
+    this.onTap,
   });
 
   @override
@@ -31,6 +32,7 @@ class _MyActionButton extends State<MyActionButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: widget.onTap,
       child: Container(
         width: widget.width,
         height: widget.height,
@@ -42,7 +44,7 @@ class _MyActionButton extends State<MyActionButton> {
           child: Text(
             widget.text,
             style: TextStyle(
-              color: MyColors.white,
+              color: MyTextColors.whiteAccent,
               fontWeight: widget.fontWeight,
               fontSize: widget.fontSize,
               fontFamily: widget.fontFamily,

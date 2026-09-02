@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
 
@@ -13,9 +12,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   Widget build(BuildContext context) {
     return const Column(
       mainAxisAlignment: .center,
-      children: [
-        Text("Chats Screen")
-      ],
+      children: [Text("Chats Screen")],
     );
   }
 }

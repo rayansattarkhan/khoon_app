@@ -60,6 +60,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/splash_screen_logo/khoon_app_splash_screen_logo.png
+    - assets/images/sign_in_screen_image/khoon_app_logo_new_2x.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
