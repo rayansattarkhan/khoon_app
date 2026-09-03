@@ -12,7 +12,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   Widget build(BuildContext context) {
     return const Column(
       mainAxisAlignment: .center,
-      children: [Text("Chats Screen")],
+      children: [Text("Chats Screen (coming soon)")],
     );
   }
 }

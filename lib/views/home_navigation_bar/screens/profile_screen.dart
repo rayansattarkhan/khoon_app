@@ -134,15 +134,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               height: 10,
                               decoration: BoxDecoration(
                                 shape: .circle,
-                                color: MyColors.darkGreen,
+                                color: DonorAvailability.donorAvailable
+                                    ? MyColors.darkGreen
+                                    : BloodDonationAvailabilityCardsColors
+                                          .statusYellow,
                               ),
                             ),
                             SizedBox(width: screenWidth / 80),
                             Text(
-                              "Active in Search Results",
+                              DonorAvailability.donorAvailable
+                                  ? "Active in Search Results"
+                                  : "Inactive in Search Results",
                               style: Theme.of(context).textTheme.bodyMedium!
                                   .copyWith(
-                                    color: MyTextColors.lightGreen,
+                                    color: DonorAvailability.donorAvailable
+                                        ? MyTextColors.darkGreen
+                                        : BloodDonationAvailabilityCardsColors
+                                              .infoYellow,
                                     fontSize: 14,
                                   ),
                             ),
@@ -152,6 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Spacer(),
                     Switch(
+                      activeThumbColor: MyColors.white,
                       activeTrackColor: MyColors.darkGreen,
                       inactiveTrackColor: MyColors.lightGrey,
                       inactiveThumbColor: MyColors.mediumGrey,

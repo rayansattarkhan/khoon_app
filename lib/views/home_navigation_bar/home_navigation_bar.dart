@@ -80,7 +80,7 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
                                 myScreens[index]["icon"],
                                 color: activeScreenIndex == index
                                     ? MyColors.brightRed
-                                    : MyColors.lightGrey,
+                                    : MyColors.mediumGrey,
                               ),
                             ),
                             Text(
@@ -88,7 +88,7 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
                               style: TextStyle(
                                 color: activeScreenIndex == index
                                     ? MyTextColors.redAccent
-                                    : MyTextColors.lightGrey,
+                                    : MyTextColors.mediumGrey,
                               ),
                             ),
                           ],

@@ -10,4 +10,5 @@ class MyTextColors {
   static const Color redAccent = Color(0xFFD32F2F);
   static const Color pinkAccent = Color(0xFFFFEBEE);
   static const Color whiteAccent = Color(0xFFFFFFFF);
+  static const Color blueAccent = Color(0xFF1976D2);
 }

@@ -439,14 +439,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Positioned(
                       left: 10,
                       top: 30,
-                      child: Text("You can turn this off anytime in settings", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: MyTextColors.mediumGrey
-                      ),),
+                      child: Text(
+                        "You can turn this off anytime in settings",
+                        style: Theme.of(context).textTheme.bodyMedium!
+                            .copyWith(color: MyTextColors.mediumGrey),
+                      ),
                     ),
                     Positioned(
                       right: 10,
                       top: 6,
                       child: Switch(
+                        activeThumbColor: MyColors.white,
                         activeTrackColor: MyColors.darkGreen,
                         inactiveTrackColor: MyColors.lightGrey,
                         inactiveThumbColor: MyColors.mediumGrey,
@@ -542,33 +545,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           });
                     }
                   },
-                ),
-                SizedBox(height: screenHeight / 16),
-                Row(
-                  mainAxisAlignment: .center,
-                  children: [
-                    Text(
-                      "Already registered?",
-                      style: Theme.of(context).textTheme.bodyMedium!
-                          .copyWith(color: MyTextColors.mediumGrey),
-                    ),
-                    SizedBox(width: 5),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SignInScreen(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        "Sign In",
-                        style: Theme.of(context).textTheme.bodyLarge!
-                            .copyWith(color: MyTextColors.redAccent),
-                      ),
-                    ),
-                  ],
                 ),
               ],
             ),

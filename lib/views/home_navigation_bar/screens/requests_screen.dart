@@ -3,6 +3,8 @@ import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/cards/blood_availability_card.dart';
 import 'package:khoon_app/view_models/donor_availability/donor_availability.dart';
+import 'package:khoon_app/views/requests_screens/donate_blood_screen.dart';
+import 'package:khoon_app/views/requests_screens/request_blood_screen.dart';
 
 class RequestsScreen extends StatefulWidget {
   const RequestsScreen({super.key});
@@ -19,6 +21,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
 
     return Column(
       children: [
+        SizedBox(height: screenHeight / 80),
         BloodAvailabilityCard(
           titleText: DonorAvailability.donorAvailable == true
               ? "You are marked as AVAILABLE"
@@ -31,8 +34,11 @@ class _RequestsScreenState extends State<RequestsScreen> {
         ),
         SizedBox(height: screenHeight / 40),
         GestureDetector(
-          onTap: (){
-            debugPrint("Receiver mode");
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => RequestBloodScreen()),
+            );
           },
           child: Container(
             width: .infinity,
@@ -73,15 +79,19 @@ class _RequestsScreenState extends State<RequestsScreen> {
                         "Post an urgent request for a patient or hospital directly in your city",
                         softWrap: true,
                         maxLines: 3,
-                        style: Theme.of(context).textTheme.bodyLarge!
-                            .copyWith(color: MyTextColors.pinkAccent, fontSize: 15),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: MyTextColors.pinkAccent,
+                          fontSize: 15,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
                   width: screenWidth / 10,
-                  child: Center(child: Icon(Icons.chevron_right, color: MyColors.white,)),
+                  child: Center(
+                    child: Icon(Icons.chevron_right, color: MyColors.white),
+                  ),
                 ),
               ],
             ),
@@ -89,8 +99,11 @@ class _RequestsScreenState extends State<RequestsScreen> {
         ),
         SizedBox(height: screenHeight / 40),
         GestureDetector(
-          onTap: (){
-            debugPrint("Donor mode");
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DonateBloodScreen()),
+            );
           },
           child: Container(
             width: .infinity,
@@ -132,15 +145,19 @@ class _RequestsScreenState extends State<RequestsScreen> {
                         "Browse urgent local requests and contact receivers directly via call or message",
                         softWrap: true,
                         maxLines: 3,
-                        style: Theme.of(context).textTheme.bodyLarge!
-                            .copyWith(color: MyTextColors.mediumGrey, fontSize: 15,),
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                          color: MyTextColors.mediumGrey,
+                          fontSize: 15,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
                   width: screenWidth / 10,
-                  child: Center(child: Icon(Icons.chevron_right, color: MyColors.brightRed,)),
+                  child: Center(
+                    child: Icon(Icons.chevron_right, color: MyColors.brightRed),
+                  ),
                 ),
               ],
             ),
