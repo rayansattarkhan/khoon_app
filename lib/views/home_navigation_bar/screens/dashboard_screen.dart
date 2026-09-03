@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/cards/blood_availability_card.dart';
+import 'package:khoon_app/core/ui_components/single_bar_chart/single_bar_chart.dart';
 import 'package:khoon_app/view_models/donor_availability/donor_availability.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -35,6 +36,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
     },
   ];
 
+  var barChartItems = [
+    {"title": "A+", "toDisplayValues": 1, "totalValues": 8},
+    {"title": "B+", "toDisplayValues": 2, "totalValues": 8},
+    {"title": "AB+", "toDisplayValues": 3, "totalValues": 8},
+    {"title": "O+", "toDisplayValues": 4, "totalValues": 8},
+    {"title": "A-", "toDisplayValues": 5, "totalValues": 8},
+    {"title": "B-", "toDisplayValues": 6, "totalValues": 8},
+    {"title": "AB-", "toDisplayValues": 7, "totalValues": 8},
+    {"title": "O-", "toDisplayValues": 8, "totalValues": 8},
+  ];
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -155,12 +166,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     style: Theme.of(context).textTheme.bodySmall!
                         .copyWith(color: MyTextColors.lightGrey),
                   ),
-                  SingleChildScrollView(
-                    child: Container(
-                      // TODO: Horizontal box charts
+                  SizedBox(height: screenHeight / 200,),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: barChartItems.length,
+                      padding: .only(top: 5, bottom: 5),
+                      itemBuilder: (context, int index) {
+                        return MySingleHorizontalBarChart(
+                          width: screenWidth - 20,
+                          height: screenHeight / 40,
+                          showPercent: true,
+                          barPrefixText: barChartItems[index]["title"].toString(),
+                          displayValue: barChartItems[index]["toDisplayValues"] as int,
+                          totalValues: barChartItems[index]["totalValues"] as int,
+                        );
+                      },
                     ),
                   ),
-                  Spacer(),
+                  SizedBox(height: screenHeight < 1600 ? screenHeight / 200 : screenHeight / 400,),
                   Center(
                     child: Text(
                       "Updated in real-time from Peshawar hospitals",
