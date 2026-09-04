@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class MyTextColors {
   static const Color blackAccent = Color(0xFF000000);
   static const Color darkGrey = Color(0xFF1A1A1A);
+  static const Color semiDarkGrey = Color(0xFF616161);
   static const Color mediumGrey = Color(0xFF666666);
   static const Color lightGrey = Color(0xFF9E9E9E);
   static const Color darkGreen = Color(0xFF1B5E20);

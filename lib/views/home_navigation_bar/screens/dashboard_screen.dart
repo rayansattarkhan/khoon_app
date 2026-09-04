@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/cards/blood_availability_card.dart';
-import 'package:khoon_app/core/ui_components/single_bar_chart/single_bar_chart.dart';
+import 'package:khoon_app/core/ui_components/charts/single_bar_chart.dart';
 import 'package:khoon_app/view_models/donor_availability/donor_availability.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -138,10 +138,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         mainAxisAlignment: .center,
                         crossAxisAlignment: .start,
                         children: [
-                          Text("12", style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                            color: MyTextColors.redAccent
-                          ),),
-                          Text("Open Requests", style: Theme.of(context).textTheme.bodyMedium,),
+                          Text(
+                            "12",
+                            style: Theme.of(context).textTheme.headlineMedium!
+                                .copyWith(color: MyTextColors.redAccent),
+                          ),
+                          Text(
+                            "Open Requests",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ],
                       ),
                     ),
@@ -159,10 +164,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         mainAxisAlignment: .center,
                         crossAxisAlignment: .start,
                         children: [
-                          Text("142", style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                            color: MyTextColors.blueAccent
-                          ),),
-                          Text("Saved This Month", style: Theme.of(context).textTheme.bodyMedium,),
+                          Text(
+                            "142",
+                            style: Theme.of(context).textTheme.headlineMedium!
+                                .copyWith(color: MyTextColors.blueAccent),
+                          ),
+                          Text(
+                            "Saved This Month",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ],
                       ),
                     ),
@@ -184,10 +194,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         mainAxisAlignment: .center,
                         crossAxisAlignment: .start,
                         children: [
-                          Text("48", style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                            color: MyTextColors.darkGreen
-                          ),),
-                          Text("Available Donors", style: Theme.of(context).textTheme.bodyMedium,),
+                          Text(
+                            "48",
+                            style: Theme.of(context).textTheme.headlineMedium!
+                                .copyWith(color: MyTextColors.darkGreen),
+                          ),
+                          Text(
+                            "Available Donors",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ],
                       ),
                     ),
@@ -205,10 +220,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         mainAxisAlignment: .center,
                         crossAxisAlignment: .start,
                         children: [
-                          Text("O+ / A+", style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                            color: MyTextColors.redAccent
-                          ),),
-                          Text("High Demand Groups", style: Theme.of(context).textTheme.bodyMedium,),
+                          Text(
+                            "O+ / A+",
+                            style: Theme.of(context).textTheme.headlineMedium!
+                                .copyWith(color: MyTextColors.redAccent),
+                          ),
+                          Text(
+                            "High Demand Groups",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ],
                       ),
                     ),
@@ -287,8 +307,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           setState(() {});
                         },
                         child: Container(
-                          width: screenWidth < 800 ? 27: 35,
-                          height: screenWidth < 800 ? 27: 35,
+                          width: screenWidth < 800 ? 27 : 35,
+                          height: screenWidth < 800 ? 27 : 35,
                           decoration: BoxDecoration(
                             border: .all(color: MyColors.lightGrey),
                             borderRadius: .circular(10),

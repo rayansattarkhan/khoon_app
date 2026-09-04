@@ -38,7 +38,7 @@ class _MySingleHorizontalBarChartState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: .only(bottom: 4),
+      padding: .only(bottom: 8),
       child: Row(
         children: [
           SizedBox(
@@ -54,7 +54,7 @@ class _MySingleHorizontalBarChartState
               Positioned(
                 child: Container(
                   width: widget.width * 0.70,
-                  height: widget.height * 0.75,
+                  height: widget.height * 0.80,
                   decoration: BoxDecoration(
                     color: MyColors.lightPink,
                     borderRadius: .circular(6),
@@ -64,7 +64,7 @@ class _MySingleHorizontalBarChartState
               Positioned(
                 child: Container(
                   width: ((widget.width * 0.70) * percent) / 100,
-                  height: widget.height * 0.75,
+                  height: widget.height * 0.80,
                   decoration: BoxDecoration(
                     color: MyColors.brightRed,
                     borderRadius: .circular(6),

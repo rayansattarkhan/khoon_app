@@ -5,6 +5,8 @@ class MyColors {
   static const Color lightRed = Color(0xFFDC5959);
   static const Color lightPink = Color(0xFFFFEBEE);
   static const Color darkGreen = Color(0xFF2E7D32);
+  static const Color mediumGreen = Color(0xFF81C784);
+  static const Color lightGreen = Color(0xFFE8F5E9);
   static const Color lightGrey = Color(0xFFE0E0E0);
   static const Color darkGrey = Color(0xFF1A1A1A);
   static const Color semiDarkGrey = Color(0xFF666666);
