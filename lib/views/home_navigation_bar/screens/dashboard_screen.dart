@@ -13,6 +13,8 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  bool reverseBarCharts = false;
+
   List<Map<String, Object>> gridItems = [
     {
       "title": 12,
@@ -46,6 +48,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     {"title": "AB-", "toDisplayValues": 7, "totalValues": 8},
     {"title": "O-", "toDisplayValues": 8, "totalValues": 8},
   ];
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -75,48 +78,145 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
             SizedBox(height: screenHeight / 80),
-            SizedBox(
-              height: screenHeight / 4.61,
-              child: GridView.builder(
-                itemCount: gridItems.length,
-                shrinkWrap: false,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 2.4,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15,
+            // SizedBox(
+            //   height: screenHeight / 5.2,
+            //   child: GridView.builder(
+            //     itemCount: gridItems.length,
+            //     shrinkWrap: false,
+            //     physics: NeverScrollableScrollPhysics(),
+            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //       crossAxisCount: 2,
+            //       childAspectRatio: 2.4,
+            //       crossAxisSpacing: 15,
+            //       mainAxisSpacing: 15,
+            //     ),
+            //     itemBuilder: (context, int index) {
+            //       return Container(
+            //         padding: .all(10),
+            //         decoration: BoxDecoration(
+            //           border: .all(color: MyColors.lightGrey),
+            //           borderRadius: .circular(15),
+            //           color: MyColors.white,
+            //         ),
+            //         child: Column(
+            //           mainAxisAlignment: .spaceEvenly,
+            //           crossAxisAlignment: .start,
+            //           children: [
+            //             Text(
+            //               gridItems[index]["title"].toString(),
+            //               style: Theme.of(context).textTheme.headlineLarge!
+            //                   .copyWith(
+            //                     color: gridItems[index]["titleColor"] as Color,
+            //                   ),
+            //             ),
+            //             Text(
+            //               gridItems[index]["detail"].toString(),
+            //               style: Theme.of(context).textTheme.bodyLarge!
+            //                   .copyWith(color: MyTextColors.mediumGrey),
+            //             ),
+            //           ],
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // ),
+            Row(
+              mainAxisAlignment: .center,
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      padding: .all(10),
+                      width: screenWidth / 2 - 15,
+                      height: screenHeight / 10 - 10,
+                      decoration: BoxDecoration(
+                        color: MyColors.white,
+                        borderRadius: .circular(15),
+                        border: .all(color: MyColors.lightGrey),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: .center,
+                        crossAxisAlignment: .start,
+                        children: [
+                          Text("12", style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                            color: MyTextColors.redAccent
+                          ),),
+                          Text("Open Requests", style: Theme.of(context).textTheme.bodyMedium,),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      padding: .all(10),
+                      width: screenWidth / 2 - 15,
+                      height: screenHeight / 10 - 10,
+                      decoration: BoxDecoration(
+                        color: MyColors.white,
+                        borderRadius: .circular(15),
+                        border: .all(color: MyColors.lightGrey),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: .center,
+                        crossAxisAlignment: .start,
+                        children: [
+                          Text("142", style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                            color: MyTextColors.blueAccent
+                          ),),
+                          Text("Saved This Month", style: Theme.of(context).textTheme.bodyMedium,),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                itemBuilder: (context, int index) {
-                  return Container(
-                    padding: .all(10),
-                    decoration: BoxDecoration(
-                      border: .all(color: MyColors.lightGrey),
-                      borderRadius: .circular(15),
-                      color: MyColors.white,
+                SizedBox(width: 10),
+                Column(
+                  children: [
+                    Container(
+                      padding: .all(10),
+                      width: screenWidth / 2 - 15,
+                      height: screenHeight / 10 - 10,
+                      decoration: BoxDecoration(
+                        color: MyColors.white,
+                        borderRadius: .circular(15),
+                        border: .all(color: MyColors.lightGrey),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: .center,
+                        crossAxisAlignment: .start,
+                        children: [
+                          Text("48", style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                            color: MyTextColors.darkGreen
+                          ),),
+                          Text("Available Donors", style: Theme.of(context).textTheme.bodyMedium,),
+                        ],
+                      ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: .spaceEvenly,
-                      crossAxisAlignment: .start,
-                      children: [
-                        Text(
-                          gridItems[index]["title"].toString(),
-                          style: Theme.of(context).textTheme.headlineLarge!
-                              .copyWith(
-                                color: gridItems[index]["titleColor"] as Color,
-                              ),
-                        ),
-                        Text(
-                          gridItems[index]["detail"].toString(),
-                          style: Theme.of(context).textTheme.bodyLarge!
-                              .copyWith(color: MyTextColors.mediumGrey),
-                        ),
-                      ],
+                    SizedBox(height: 10),
+                    Container(
+                      padding: .all(10),
+                      width: screenWidth / 2 - 15,
+                      height: screenHeight / 10 - 10,
+                      decoration: BoxDecoration(
+                        color: MyColors.white,
+                        borderRadius: .circular(15),
+                        border: .all(color: MyColors.lightGrey),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: .center,
+                        crossAxisAlignment: .start,
+                        children: [
+                          Text("O+ / A+", style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                            color: MyTextColors.redAccent
+                          ),),
+                          Text("High Demand Groups", style: Theme.of(context).textTheme.bodyMedium,),
+                        ],
+                      ),
                     ),
-                  );
-                },
-              ),
+                  ],
+                ),
+              ],
             ),
+            SizedBox(height: screenHeight / 40),
             Container(
               padding: .all(10),
               height: screenHeight / 4.5,
@@ -156,34 +256,78 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Column(
                 crossAxisAlignment: .start,
                 children: [
-                  Text(
-                    "City Demand By Blood Group",
-                    style: Theme.of(context).textTheme.bodyLarge!
-                        .copyWith(color: MyTextColors.darkGrey, fontSize: 15),
+                  Row(
+                    spacing: screenWidth / 3 - 10,
+                    children: [
+                      Column(
+                        crossAxisAlignment: .start,
+                        children: [
+                          Text(
+                            "City Demand By Blood Group",
+                            style: Theme.of(context).textTheme.bodyLarge!
+                                .copyWith(
+                                  color: MyTextColors.darkGrey,
+                                  fontSize: 15,
+                                ),
+                          ),
+                          Text(
+                            "Urgent requests ratio across Peshawar",
+                            style: Theme.of(context).textTheme.bodySmall!
+                                .copyWith(color: MyTextColors.lightGrey),
+                          ),
+                        ],
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          if (reverseBarCharts == true) {
+                            reverseBarCharts = false;
+                          } else {
+                            reverseBarCharts = true;
+                          }
+                          setState(() {});
+                        },
+                        child: Container(
+                          width: screenWidth < 800 ? 27: 35,
+                          height: screenWidth < 800 ? 27: 35,
+                          decoration: BoxDecoration(
+                            border: .all(color: MyColors.lightGrey),
+                            borderRadius: .circular(10),
+                          ),
+                          child: Icon(
+                            reverseBarCharts
+                                ? Icons.arrow_downward
+                                : Icons.arrow_upward,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "Urgent requests ratio across Peshawar",
-                    style: Theme.of(context).textTheme.bodySmall!
-                        .copyWith(color: MyTextColors.lightGrey),
-                  ),
-                  SizedBox(height: screenHeight / 200,),
+                  SizedBox(height: screenHeight / 200),
                   Expanded(
                     child: ListView.builder(
                       itemCount: barChartItems.length,
+                      reverse: reverseBarCharts,
                       padding: .only(top: 5, bottom: 5),
                       itemBuilder: (context, int index) {
                         return MySingleHorizontalBarChart(
                           width: screenWidth - 20,
                           height: screenHeight / 40,
                           showPercent: true,
-                          barPrefixText: barChartItems[index]["title"].toString(),
-                          displayValue: barChartItems[index]["toDisplayValues"] as int,
-                          totalValues: barChartItems[index]["totalValues"] as int,
+                          barPrefixText: barChartItems[index]["title"]
+                              .toString(),
+                          displayValue:
+                              barChartItems[index]["toDisplayValues"] as int,
+                          totalValues:
+                              barChartItems[index]["totalValues"] as int,
                         );
                       },
                     ),
                   ),
-                  SizedBox(height: screenHeight < 1600 ? screenHeight / 200 : screenHeight / 400,),
+                  SizedBox(
+                    height: screenHeight < 1600
+                        ? screenHeight / 200
+                        : screenHeight / 400,
+                  ),
                   Center(
                     child: Text(
                       "Updated in real-time from Peshawar hospitals",
