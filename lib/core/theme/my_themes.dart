@@ -18,6 +18,11 @@ class MyThemes {
           fontWeight: .bold,
           color: MyTextColors.darkGrey
         ),
+        headlineMedium: TextStyle(
+          fontSize: 20,
+          fontWeight: .bold,
+          color: MyTextColors.darkGrey
+        ),
         headlineSmall: TextStyle(
           fontSize: 18.0,
           fontWeight: .bold,

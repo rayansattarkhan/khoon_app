@@ -277,7 +277,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 crossAxisAlignment: .start,
                 children: [
                   Row(
-                    spacing: screenWidth / 3 - 10,
+                    spacing: screenWidth * 0.24,
+                    mainAxisAlignment: .spaceBetween,
                     children: [
                       Column(
                         crossAxisAlignment: .start,

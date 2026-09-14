@@ -57,24 +57,15 @@ class BloodAvailabilityCard extends StatelessWidget {
             children: [
               Text(
                 titleText,
-                // For regular text styling with the global theme.
-                // style: TextStyle(
-                //   fontSize: 14,
-                //   fontWeight: .bold,
-                //   color: DonorAvailability.donorAvailable == true
-                //       ? BloodDonationAvailabilityCardsColors.titleGreen
-                //       : BloodDonationAvailabilityCardsColors.titleYellow,
-                // ),
-                //
                 style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontWeight: .bold,
-                    color: DonorAvailability.donorAvailable == true
-                        ? BloodDonationAvailabilityCardsColors.titleGreen
-                        : BloodDonationAvailabilityCardsColors.titleYellow,
-                )
+                  color: DonorAvailability.donorAvailable == true
+                      ? BloodDonationAvailabilityCardsColors.titleGreen
+                      : BloodDonationAvailabilityCardsColors.titleYellow,
+                ),
               ),
               Align(
-                alignment: .centerStart ,
+                alignment: .centerStart,
                 child: Text(
                   infoText,
                   style: TextStyle(

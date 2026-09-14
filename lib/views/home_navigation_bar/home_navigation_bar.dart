@@ -17,7 +17,11 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
   int activeScreenIndex = 0;
 
   List<Map<String, dynamic>> myScreens = [
-    {"screen": DashboardScreen(), "title": "Home", "icon": Icons.dashboard_rounded},
+    {
+      "screen": DashboardScreen(),
+      "title": "Home",
+      "icon": Icons.dashboard_rounded,
+    },
     {
       "screen": RequestsScreen(),
       "title": "Requests",
@@ -55,8 +59,6 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
                     return InkWell(
                       onTap: () {
                         activeScreenIndex = index;
-
-                        debugPrint("option tapped!");
                         setState(() {});
                       },
                       child: SizedBox(

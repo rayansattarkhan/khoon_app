@@ -42,7 +42,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
           },
           child: Container(
             width: .infinity,
-            height: screenHeight / 6,
+            height: screenHeight * 0.15,
             padding: .all(15),
             decoration: BoxDecoration(
               color: MyColors.brightRed,
@@ -52,7 +52,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
               children: [
                 Container(
                   width: 80,
-                  height: 80,
+                  height: 85,
                   margin: .only(right: 15),
                   decoration: BoxDecoration(
                     shape: .circle,
@@ -81,7 +81,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
                         maxLines: 3,
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: MyTextColors.pinkAccent,
-                          fontSize: 15,
+                          fontSize: 14,
                         ),
                       ),
                     ],
@@ -107,7 +107,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
           },
           child: Container(
             width: .infinity,
-            height: screenHeight / 6,
+            height: screenHeight * 0.15,
             padding: .all(15),
             decoration: BoxDecoration(
               color: MyColors.white,
@@ -118,7 +118,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
               children: [
                 Container(
                   width: 80,
-                  height: 80,
+                  height: 85,
                   margin: .only(right: 15),
                   decoration: BoxDecoration(
                     shape: .circle,
@@ -147,7 +147,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
                         maxLines: 3,
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                           color: MyTextColors.mediumGrey,
-                          fontSize: 15,
+                          fontSize: 14,
                         ),
                       ),
                     ],

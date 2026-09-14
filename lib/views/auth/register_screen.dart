@@ -4,7 +4,7 @@ import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/buttons/primary_button.dart';
 import 'package:khoon_app/view_models/constants/blood_groups.dart';
 import 'package:khoon_app/view_models/donor_availability/donor_availability.dart';
-import 'package:khoon_app/views/auth_views/sign_in_screen.dart';
+import 'package:khoon_app/views/auth/sign_in_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -38,14 +38,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   List<Map<String, Object>> bloodGroups = [
-    {"label": "A+", "type": BloodGroup.aPositive()},
-    {"label": "B+", "type": BloodGroup.bPositive()},
-    {"label": "AB+", "type": BloodGroup.abPositive()},
-    {"label": "O+", "type": BloodGroup.oPositive()},
-    {"label": "A-", "type": BloodGroup.aNegative()},
-    {"label": "B-", "type": BloodGroup.bNegative()},
-    {"label": "AB-", "type": BloodGroup.abNegative()},
-    {"label": "O-", "type": BloodGroup.oNegative()},
+    {"label": "A+", "type": BloodGroups.aPositive()},
+    {"label": "B+", "type": BloodGroups.bPositive()},
+    {"label": "AB+", "type": BloodGroups.abPositive()},
+    {"label": "O+", "type": BloodGroups.oPositive()},
+    {"label": "A-", "type": BloodGroups.aNegative()},
+    {"label": "B-", "type": BloodGroups.bNegative()},
+    {"label": "AB-", "type": BloodGroups.abNegative()},
+    {"label": "O-", "type": BloodGroups.oNegative()},
   ];
 
   List<Map<String, String>> cities = [

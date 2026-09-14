@@ -3,7 +3,7 @@ import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/buttons/outlined_button.dart';
 import 'package:khoon_app/view_models/donor_availability/donor_availability.dart';
-import 'package:khoon_app/views/auth_views/sign_in_screen.dart';
+import 'package:khoon_app/views/auth/sign_in_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Text(
                     "A",
                     style: Theme.of(context).textTheme.headlineLarge!
-                        .copyWith(color: MyTextColors.redAccent),
+                        .copyWith(fontSize: 54, color: MyTextColors.redAccent),
                   ),
                 ),
                 SizedBox(width: screenWidth / 20),

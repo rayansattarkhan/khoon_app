@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khoon_app/views/auth_views/sign_in_screen.dart';
+import 'package:khoon_app/views/auth/sign_in_screen.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 
 class SplashScreen extends StatefulWidget {

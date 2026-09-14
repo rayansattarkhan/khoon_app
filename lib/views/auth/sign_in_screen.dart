@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/buttons/primary_button.dart';
-import 'package:khoon_app/views/auth_views/register_screen.dart';
+import 'package:khoon_app/views/auth/register_screen.dart';
 import 'package:khoon_app/views/home_navigation_bar/home_navigation_bar.dart';
 
 class SignInScreen extends StatefulWidget {
