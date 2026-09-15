@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "577538902384",
+    "project_id": "khoon-app",
+    "storage_bucket": "khoon-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577538902384:android:2e436d996044e2ddd327b5",
+        "android_client_info": {
+          "package_name": "com.rayansattarkhan.khoon_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQeSC2hDDtO8a4FoVCuI3VkdLxmVnnL6k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
