@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/buttons/primary_button.dart';
+import 'package:khoon_app/core/ui_components/snackbars/my_snack_bar.dart';
+import 'package:khoon_app/view_models/auth/auth.dart';
 import 'package:khoon_app/views/auth/register_screen.dart';
 import 'package:khoon_app/views/home_navigation_bar/home_navigation_bar.dart';
 
@@ -40,7 +42,9 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   SizedBox(height: 70),
                   Padding(
-                    padding: screenWidth < 800 ? .only(left: screenWidth / 25) : .all(0),
+                    padding: screenWidth < 800
+                        ? .only(left: screenWidth / 25)
+                        : .all(0),
                     child: Image.asset(
                       "assets/images/sign_in_screen_image/khoon_app_logo_new_2x.png",
                       scale: 10,
@@ -157,39 +161,63 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(height: 16),
                   MyPrimaryButton(
                     "Sign In",
-                    onTap: () {
+                    onTap: () async {
                       if (userEmail.text.isEmpty || userPassword.text.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            behavior: .floating,
-                            backgroundColor:
-                                BloodDonationAvailabilityCardsColors
-                                    .borderYellow,
-                            content: Row(
-                              crossAxisAlignment: .center,
-                              children: [
-                                Icon(
-                                  Icons.warning_amber,
-                                  color: BloodDonationAvailabilityCardsColors
-                                      .titleYellow,
-                                ),
-                                SizedBox(width: 8),
-                                Text(
-                                  "Please fill all the fields!",
-                                  style: Theme.of(context).textTheme.bodyLarge!
-                                      .copyWith(color: MyColors.brightRed),
-                                ),
-                              ],
-                            ),
+                          MySnackBar.show(
+                            context: context,
+                            message: 'Please fill all the fields',
                           ),
                         );
                       } else {
-                        // TODO: Implement FireBase Auth
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => HomeNavigationBar(),
-                          ),
+                        showDialog(
+                          barrierDismissible: true,
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              backgroundColor: MyColors.brightRed,
+                              content: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Please wait!",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .copyWith(
+                                            color: MyTextColors.whiteAccent,
+                                          ),
+                                    ),
+                                    CircularProgressIndicator(
+                                      color: MyColors.white,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
                         );
+                        final done =
+                            await FirebaseUser.signInUserWithEmailAndPassword(
+                              email: userEmail.text.trim(),
+                              password: userPassword.text.trim(),
+                            );
+                        if (done == true && context.mounted) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeNavigationBar(),
+                            ),
+                          );
+                        } else if (done == false && context.mounted) {
+                          Navigator.pop(context);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            MySnackBar.show(
+                              context: context,
+                              message: 'Incorrect email or password!',
+                            ),
+                          );
+                        }
                       }
                     },
                   ),

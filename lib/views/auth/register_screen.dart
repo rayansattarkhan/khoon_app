@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/buttons/primary_button.dart';
+import 'package:khoon_app/core/ui_components/snackbars/my_snack_bar.dart';
 import 'package:khoon_app/view_models/constants/blood_groups.dart';
 import 'package:khoon_app/view_models/donor_availability/donor_availability.dart';
 import 'package:khoon_app/views/auth/sign_in_screen.dart';
@@ -485,56 +486,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       (controller) => controller.text.isEmpty,
                     )) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          behavior: .floating,
-                          backgroundColor:
-                              BloodDonationAvailabilityCardsColors.borderYellow,
-                          content: Row(
-                            crossAxisAlignment: .center,
-                            children: [
-                              Icon(
-                                Icons.warning_amber,
-                                color: BloodDonationAvailabilityCardsColors
-                                    .titleYellow,
-                              ),
-                              SizedBox(width: 8),
-                              Text(
-                                "Please fill all the fields!",
-                                style: Theme.of(context).textTheme.bodyLarge!
-                                    .copyWith(color: MyColors.brightRed),
-                              ),
-                            ],
-                          ),
+                        MySnackBar.show(
+                          context: context,
+                          message: "Please fill all the fields!",
                         ),
                       );
                     } else if (userPassword.text != userConfirmPassword.text) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          behavior: .floating,
-                          backgroundColor:
-                              BloodDonationAvailabilityCardsColors.borderYellow,
-                          content: Row(
-                            crossAxisAlignment: .center,
-                            children: [
-                              Icon(
-                                Icons.warning_amber,
-                                color: BloodDonationAvailabilityCardsColors
-                                    .titleYellow,
-                              ),
-                              SizedBox(width: 8),
-                              Text(
-                                "Passwords don't match!",
-                                style: Theme.of(context).textTheme.bodyLarge!
-                                    .copyWith(color: MyColors.brightRed),
-                              ),
-                            ],
-                          ),
+                        MySnackBar.show(
+                          context: context,
+                          message: "Passwords don't match!",
                         ),
                       );
                     } else {
                       await Future.delayed(Duration(seconds: 1))
                           .then((onValue) {
-                            if (mounted) {
+                            if (context.mounted) {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

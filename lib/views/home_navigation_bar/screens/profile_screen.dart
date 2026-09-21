@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/buttons/outlined_button.dart';
+import 'package:khoon_app/core/ui_components/snackbars/my_snack_bar.dart';
 import 'package:khoon_app/view_models/donor_availability/donor_availability.dart';
 import 'package:khoon_app/views/auth/sign_in_screen.dart';
+import 'package:khoon_app/view_models/auth/auth.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -288,11 +290,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
           SizedBox(height: screenHeight / 40),
           MyOutlinedButton(
             "Log Out",
-            onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => SignInScreen()),
-              );
+            onTap: () async {
+              final bool done = await FirebaseUser.signOutUser();
+              if (done == true && context.mounted) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignInScreen()),
+                );
+              } else if (done == false && context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  MySnackBar.show(context: context, message: "Log Out Failed"),
+                );
+              }
             },
           ),
         ],
