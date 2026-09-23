@@ -3,27 +3,25 @@ import 'package:flutter/foundation.dart';
 
 class FirebaseUser {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
-  static late UserCredential? _credential;
-  static bool _signInStatus = false;
-  static bool _loggedOut = false;
+  static bool _signIn = false;
 
   static Future<bool> createUserWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
     try {
-      _credential = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      _signInStatus = true;
-      return _signInStatus;
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((_) {
+            _signIn = true;
+          });
+      return _signIn;
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
         print(e);
       }
-      _signInStatus = false;
-      return _signInStatus;
+      _signIn = false;
+      return _signIn;
     }
   }
 
@@ -32,37 +30,35 @@ class FirebaseUser {
     required String password,
   }) async {
     try {
-      _credential = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      _signInStatus = true;
-      return _signInStatus;
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((_) {
+            _signIn = true;
+          });
+      return _signIn;
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
         print(e.code);
         print(e.message);
       }
-      _signInStatus = false;
-      return _signInStatus;
+      _signIn = false;
+      return _signIn;
     }
   }
 
   static Future<bool> signOutUser() async {
     try {
-      await _auth.signOut();
-      if (_credential != null && _signInStatus == true) {
-        _credential = null;
-        _signInStatus = false;
-        _loggedOut = true;
+      if (_signIn) {
+        await _auth.signOut().then((_) {
+          _signIn = false;
+        });
       }
-      return _loggedOut;
+      return _signIn; // false as SignedOut
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
         print(e.code);
       }
-      _loggedOut = false;
-      return _loggedOut;
+      return _signIn; // return signIn = True
     }
   }
 }

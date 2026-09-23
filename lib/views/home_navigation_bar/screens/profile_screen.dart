@@ -292,12 +292,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             "Log Out",
             onTap: () async {
               final bool done = await FirebaseUser.signOutUser();
-              if (done == true && context.mounted) {
+              if (done == false && context.mounted) {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => SignInScreen()),
                 );
-              } else if (done == false && context.mounted) {
+              } else if (done == true && context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   MySnackBar.show(context: context, message: "Log Out Failed"),
                 );
