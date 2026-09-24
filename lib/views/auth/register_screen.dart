@@ -3,9 +3,11 @@ import 'package:khoon_app/core/theme/theme_constants/my_colors.dart';
 import 'package:khoon_app/core/theme/theme_constants/my_text_colors.dart';
 import 'package:khoon_app/core/ui_components/buttons/primary_button.dart';
 import 'package:khoon_app/core/ui_components/snackbars/my_snack_bar.dart';
+import 'package:khoon_app/view_models/auth/auth.dart';
 import 'package:khoon_app/view_models/constants/blood_groups.dart';
 import 'package:khoon_app/view_models/donor_availability/donor_availability.dart';
 import 'package:khoon_app/views/auth/sign_in_screen.dart';
+import 'package:khoon_app/views/home_navigation_bar/home_navigation_bar.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -473,17 +475,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 MyPrimaryButton(
                   "Register as Donor",
                   onTap: () async {
-                    List<TextEditingController> controllers = [
-                      userFullName,
-                      userEmailAddress,
-                      userPhoneNumber,
-                      userBloodGroup,
-                      userCity,
-                      userPassword,
-                      userConfirmPassword,
-                    ];
-                    if (controllers.any(
-                      (controller) => controller.text.isEmpty,
+                    Map<String, String> controllers = {
+                      'userFullName': userFullName.text,
+                      'userEmailAddress': userEmailAddress.text,
+                      'userPhoneNumber': userPhoneNumber.text,
+                      'userBloodGroup': userBloodGroup.text,
+                      'userCity': userCity.text,
+                      'userPassword': userPassword.text,
+                      'userConfirmPassword': userConfirmPassword.text,
+                    };
+
+                    if (controllers.values.any(
+                      (controller) => controller.isEmpty,
                     )) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         MySnackBar.show(
@@ -491,7 +494,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           message: "Please fill all the fields!",
                         ),
                       );
-                    } else if (userPassword.text != userConfirmPassword.text) {
+                    } else if (controllers['userPassword'] !=
+                        controllers['userConfirmPassword']) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         MySnackBar.show(
                           context: context,
@@ -499,17 +503,66 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       );
                     } else {
-                      await Future.delayed(Duration(seconds: 1))
-                          .then((onValue) {
-                            if (context.mounted) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignInScreen(),
-                                ),
-                              );
-                            }
-                          });
+                      showDialog(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: MyColors.brightRed,
+                            content: SingleChildScrollView(
+                              child: Column(
+                                spacing: 20,
+                                children: [
+                                  CircularProgressIndicator(
+                                    color: MyColors.white,
+                                  ),
+                                  Text(
+                                    "Please wait!",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .copyWith(
+                                          color: MyTextColors.whiteAccent,
+                                        ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                      var done =
+                          await FirebaseUser.createUserWithEmailAndPassword(
+                            email: controllers['userEmailAddress']!,
+                            password: controllers['userPassword']!,
+                          );
+                      if (done == true && context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          MySnackBar.show(
+                            context: context,
+                            message: 'Account created successfully',
+                            backgroundColor: MyColors.darkGreen,
+                            messageColor: MyTextColors.whiteAccent,
+                            iconData: Icons.cloud_done_rounded,
+                            iconColor: MyColors.white,
+                          ),
+                        );
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeNavigationBar(),
+                          ),
+                        );
+                      }
+                      if (done == false && context.mounted) {
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          MySnackBar.show(
+                            context: context,
+                            message: 'Error creating user!',
+                          ),
+                        );
+                      }
                     }
                   },
                 ),

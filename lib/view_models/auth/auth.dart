@@ -53,12 +53,12 @@ class FirebaseUser {
           _signIn = false;
         });
       }
-      return _signIn; // false as SignedOut
+      return true; // Successful attempt
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
         print(e.code);
       }
-      return _signIn; // return signIn = True
+      return false; // Unsuccessful attempt
     }
   }
 }

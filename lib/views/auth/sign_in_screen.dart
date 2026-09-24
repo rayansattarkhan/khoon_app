@@ -171,14 +171,18 @@ class _SignInScreenState extends State<SignInScreen> {
                         );
                       } else {
                         showDialog(
-                          barrierDismissible: true,
+                          barrierDismissible: false,
                           context: context,
                           builder: (context) {
                             return AlertDialog(
                               backgroundColor: MyColors.brightRed,
                               content: SingleChildScrollView(
                                 child: Column(
+                                  spacing: 20,
                                   children: [
+                                    CircularProgressIndicator(
+                                      color: MyColors.white,
+                                    ),
                                     Text(
                                       "Please wait!",
                                       style: Theme.of(context)
@@ -187,9 +191,6 @@ class _SignInScreenState extends State<SignInScreen> {
                                           .copyWith(
                                             color: MyTextColors.whiteAccent,
                                           ),
-                                    ),
-                                    CircularProgressIndicator(
-                                      color: MyColors.white,
                                     ),
                                   ],
                                 ),
@@ -240,10 +241,16 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           );
                         },
-                        child: Text(
-                          "Register",
-                          style: Theme.of(context).textTheme.bodyLarge!
-                              .copyWith(color: MyTextColors.redAccent),
+                        child: SizedBox(
+                          height: 20,
+                          width: 60,
+                          child: Center(
+                            child: Text(
+                              "Register",
+                              style: Theme.of(context).textTheme.bodyLarge!
+                                  .copyWith(color: MyTextColors.redAccent),
+                            ),
+                          ),
                         ),
                       ),
                     ],

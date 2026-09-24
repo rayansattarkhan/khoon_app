@@ -289,15 +289,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           SizedBox(height: screenHeight / 40),
           MyOutlinedButton(
-            "Log Out",
+            "Sign Out",
             onTap: () async {
               final bool done = await FirebaseUser.signOutUser();
-              if (done == false && context.mounted) {
+              if (done == true && context.mounted) {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => SignInScreen()),
                 );
-              } else if (done == true && context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  MySnackBar.show(
+                    context: context,
+                    message: 'SignOut Successful',
+                    backgroundColor: MyColors.darkGreen,
+                    messageColor: MyTextColors.whiteAccent,
+                    iconData: Icons.cloud_done_rounded,
+                    iconColor: MyColors.white,
+                  ),
+                );
+              } else if (done == false && context.mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   MySnackBar.show(context: context, message: "Log Out Failed"),
                 );
