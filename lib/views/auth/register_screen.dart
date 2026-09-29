@@ -6,6 +6,7 @@ import 'package:khoon_app/core/ui_components/snackbars/my_snack_bar.dart';
 import 'package:khoon_app/view_models/auth/auth.dart';
 import 'package:khoon_app/view_models/constants/blood_groups.dart';
 import 'package:khoon_app/view_models/donor_availability/donor_availability.dart';
+import 'package:khoon_app/view_models/firestore/firestore_db.dart';
 import 'package:khoon_app/views/auth/sign_in_screen.dart';
 import 'package:khoon_app/views/home_navigation_bar/home_navigation_bar.dart';
 
@@ -481,8 +482,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       'userPhoneNumber': userPhoneNumber.text,
                       'userBloodGroup': userBloodGroup.text,
                       'userCity': userCity.text,
-                      'userPassword': userPassword.text,
-                      'userConfirmPassword': userConfirmPassword.text,
                     };
 
                     if (controllers.values.any(
@@ -494,8 +493,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           message: "Please fill all the fields!",
                         ),
                       );
-                    } else if (controllers['userPassword'] !=
-                        controllers['userConfirmPassword']) {
+                    } else if (userPassword.text != userConfirmPassword.text) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         MySnackBar.show(
                           context: context,
@@ -531,12 +529,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           );
                         },
                       );
-                      var done =
+                      bool userCreated =
                           await FirebaseUser.createUserWithEmailAndPassword(
-                            email: controllers['userEmailAddress']!,
-                            password: controllers['userPassword']!,
+                            email: userEmailAddress.text,
+                            password: userPassword.text,
                           );
-                      if (done == true && context.mounted) {
+                      controllers['uid'] = FirebaseUser.userID;
+                      var dataWrite = await FirestoreDb.addUserDocument(
+                        controllers,
+                      );
+                      // if (userCreated == true &&
+                      //     dataWrite == true &&
+                      //     context.mounted) {
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     MySnackBar.show(
+                      //       context: context,
+                      //       message: 'Account created successfully',
+                      //       backgroundColor: MyColors.darkGreen,
+                      //       messageColor: MyTextColors.whiteAccent,
+                      //       iconData: Icons.cloud_done_rounded,
+                      //       iconColor: MyColors.white,
+                      //     ),
+                      //   );
+                      //   Navigator.pushReplacement(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) => HomeNavigationBar(),
+                      //     ),
+                      //   );
+                      // }
+                      if (context.mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           MySnackBar.show(
                             context: context,
@@ -554,7 +576,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         );
                       }
-                      if (done == false && context.mounted) {
+                      if (userCreated == false &&
+                          dataWrite == true &&
+                          context.mounted) {
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                           MySnackBar.show(

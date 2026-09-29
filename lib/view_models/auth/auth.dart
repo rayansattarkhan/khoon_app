@@ -61,4 +61,6 @@ class FirebaseUser {
       return false; // Unsuccessful attempt
     }
   }
+
+  static String get userID => _auth.currentUser!.uid;
 }
